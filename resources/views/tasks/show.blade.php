@@ -4,13 +4,25 @@
 
     <h1>id = {{ $task->id }} のタスク詳細ページ</h1>
 
-    <p>ステータス: {{ $task->status }}</p>
-    <p>タスク: {{ $task->content }}</p>
+    <table class="table table-bordered">
+        <tr>
+            <th>id</th>
+            <td>{{ $message->id }}</td>
+        </tr>
+        <tr>
+            <th>タイトル</th>
+            <td>{{ $message->title }}</td>
+        </tr>
+        <tr>
+            <th>メッセージ</th>
+            <td>{{ $message->content }}</td>
+        </tr>
+    </table>
     
-    {!! link_to_route('tasks.edit', 'このタスク編集', ['id' => $task->id]) !!}
+    {!! link_to_route('tasks.edit', 'このメッセージ編集', ['id' => $task->id], ['class' => 'btn btn-default']) !!}
     
     {!! Form::model($task, ['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
-        {!! Form::submit('削除') !!}
+            {!! Form::submit('削除'), !!}
     {!! Form::close() !!}
 
 @endsection
