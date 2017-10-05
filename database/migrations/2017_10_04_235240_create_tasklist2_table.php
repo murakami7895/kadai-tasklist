@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasklistsTable extends Migration
+class CreateTasklist2Table extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,13 @@ class CreateTasklistsTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->index();
             $table->string('content');
+            $table->string('status', 10);
             $table->timestamps();
+            
+            // 外部キー制約
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
